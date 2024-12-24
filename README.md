@@ -2,10 +2,12 @@
 
 A vanilla 1.12 addon to add your main's name in front of your guild and channel chat messages.
 
-Example:
-[Guild] [Yourchar]: Some chat message
-becomes
-[Guild] [Yourchar]: (Yourname): Some chat message
+## Example:  
+**[Guild] [Yourchar]: Some chat message**
+
+Becomes
+
+**[Guild] [Yourchar]: (Yourname): Some chat message**
 
 ## Commands
 
