@@ -1,0 +1,7 @@
+## Interface: 11200
+## Title: Main's Name In Chat
+## Author: Jemba
+## Notes: Main's Name In Chat
+## Version: 1.0
+## SavedVariables: MainsNameInChat
+MainsNameInChat.lua
