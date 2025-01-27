@@ -15,9 +15,11 @@ function SendChatMessage(msg, chatType, lang, chan)
                     return
                 end
                 if strsub(msg, 1, 2) == ".z" then
-                    ClearTarget() TargetLastTarget()
-                    originalSCM(msg)
-                    return
+                    if UnitName("target") then
+                        ClearTarget() TargetLastTarget()
+                        originalSCM(msg)
+                        return
+                    end
                 end
             end
         end
