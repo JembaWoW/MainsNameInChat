@@ -22,6 +22,7 @@ function SendChatMessage(msg, chatType, lang, chan)
                     end
                     originalSCM(msg)
                     return
+                end
             end
         end
     end
