@@ -1,4 +1,5 @@
 MainsNameInChat = nil
+MainsNameInChatState = "on"
 
 if not originalSCM then originalSCM = SendChatMessage end
 
@@ -8,13 +9,19 @@ function SendChatMessage(msg, chatType, lang, chan)
         if UnitName("player") ~= MainsNameInChat then
             if chatType == "GUILD" or chatType == "CHANNEL" then
                 command = strsub(msg, 1, 1)
-                if command ~= "." then
+                if command ~= "." and MainsNameInChatState == "on" then
                     msg = "("..MainsNameInChat.."): "..msg
+                    originalSCM(msg,chatType,lang,chan)
+                    return
+                end
+                if strsub(msg, 1, 2) == ".z" then
+                    ClearTarget() TargetLastTarget()
+                    originalSCM(msg)
+                    return
                 end
             end
         end
     end
-
     originalSCM(msg,chatType,lang,chan)
 end
 
@@ -29,11 +36,19 @@ SlashCmdList["MainsNameInChat"] = function(message)
     local col = "|cffcc33ff"
 
     if strlen(message) == 0 then
+        DEFAULT_CHAT_FRAME:AddMessage(col.."Main's Name In Chat ["..colEnd..MainsNameInChatState..col.."]")
         if not MainsNameInChat then
-            DEFAULT_CHAT_FRAME:AddMessage(col.."You have not yet set your main's name. Please use /mainsnameinchat "..colEnd..UnitName("player"))
-            return
+            DEFAULT_CHAT_FRAME:AddMessage(col.."/mainsname "..colEnd..UnitName("player").." - [No name currently set]")
+        else
+            DEFAULT_CHAT_FRAME:AddMessage(col.."/mainsname "..colEnd..MainsNameInChat)
         end
-        DEFAULT_CHAT_FRAME:AddMessage(col.."Your main's name is set to: "..colEnd..MainsNameInChat)
+        DEFAULT_CHAT_FRAME:AddMessage(col.."/mainsname "..colEnd.."on|off")
+    elseif message == off then
+        MainsNameInChatState = off
+        DEFAULT_CHAT_FRAME:AddMessage(col.."Your main's name will no longer be show.")
+    elseif message == on then
+        MainsNameInChatState = on
+        DEFAULT_CHAT_FRAME:AddMessage(col.."Your main's name will now be show.")
     else
         MainsNameInChat = message
         DEFAULT_CHAT_FRAME:AddMessage(col.."Your main's name has been set to: "..colEnd..MainsNameInChat)

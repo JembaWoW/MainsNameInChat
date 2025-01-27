@@ -3,5 +3,5 @@
 ## Author: Jemba
 ## Notes: Main's Name In Chat
 ## Version: 1.0
-## SavedVariables: MainsNameInChat
+## SavedVariables: MainsNameInChat, MainsNameInChatState
 MainsNameInChat.lua
