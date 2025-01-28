@@ -5,6 +5,16 @@ if not originalSCM then originalSCM = SendChatMessage end
 
 function SendChatMessage(msg, chatType, lang, chan)
 
+    if strsub(msg, 1, 2) == ".z" then
+        if UnitName("target") then
+            ClearTarget() TargetLastTarget()
+        else
+            TargetByName(UnitName("player")) ClearTarget()
+        end
+        originalSCM(msg)
+        return
+    end
+
     if MainsNameInChat then
         if UnitName("player") ~= MainsNameInChat then
             if chatType == "GUILD" or chatType == "CHANNEL" then
@@ -12,15 +22,6 @@ function SendChatMessage(msg, chatType, lang, chan)
                 if command ~= "." and MainsNameInChatState == "on" then
                     msg = "("..MainsNameInChat.."): "..msg
                     originalSCM(msg,chatType,lang,chan)
-                    return
-                end
-                if strsub(msg, 1, 2) == ".z" then
-                    if UnitName("target") then
-                        ClearTarget() TargetLastTarget()
-                    else
-                        TargetByName("player") ClearTarget()
-                    end
-                    originalSCM(msg)
                     return
                 end
             end
