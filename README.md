@@ -5,7 +5,7 @@ A vanilla 1.12 addon to add your main's name in front of your guild and channel 
 Example:
 [Guild] [Yourchar]: Some chat message
 becomes
-[Guild] [Yourchar]: (Yourname): Some chat message
+[Guild] [Yourchar]: (Yourmain): Some chat message
 
 ## Commands
 
